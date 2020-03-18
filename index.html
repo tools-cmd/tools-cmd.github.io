@@ -248,7 +248,7 @@
 
 	function ajax(url, success, fail) {
 		xmlHttp.onreadystatechange = function () {
-			if (xmlHttp.readyState ==4 && (xmlHttp.status==200 || xmlHttp.status==304)) {
+			if (xmlHttp.readyState == 4 && (xmlHttp.status==200 || xmlHttp.status==304)) {
 				success(JSON.parse(xmlHttp.responseText))
 			} else {
 				fail()
@@ -268,13 +268,14 @@
 			var url = eInput.value;
 			if (url) {
 				ajax(host + '/instagram/get?url=' + url, function(res) {
+					if (!res) res = {}
 					if (res.code === 0) {
 						window.open(res.data.downloadUrl)
 					} else {
 						alert(res.message)
 					}
 				}, function(err) {
-					alert('Failed to request resource')
+					// alert('Failed to request resource')
 				})
 			}
 			e.preventDefault()

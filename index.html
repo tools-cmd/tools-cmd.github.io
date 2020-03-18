@@ -1,72 +1,272 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-	<title>test</title>
-	<style type="text/css">
-	html, body, div {
-		margin: 0;
-		padding: 0;
-	}
-	#main {
-		position: fixed;
-		left: 0;
-		right: 0;
-		bottom: 0;
-		top: 0;
-	}
-	.left,
-	.right {
-		position: absolute;
-		top: 0;
-		bottom: 0;
-	}
-	.left {
-		left: 0;
-		right: 50%;
-		background-color: pink;
-	}
-	.right {
-		left: 50%;
-		right: 0;
-		background-color: blue;
-		overflow-y: auto;
-	}
+	<title>Instagram Photo, Video Downloader</title>
+	<style>
+		* { margin: 0; padding: 0; }
+		a {
+			text-decoration: none;
+			transition: all .25s cubic-bezier(.2,1,.4,1);
+			/* outline: none;
+    	outline-offset: 0; */
+		}
+		body {
+			background: hsla(0,0%,100%,.92);
+		}
+		button {
+			border: none;
+		}
+		/* #nav {
+			position: fixed;
+			left: 0;
+			right: 0;
+			top: 0;
+			height: 68px;
+			padding-left: 100px;
+    	box-shadow: 0 0 14px -6px rgba(0,0,0,.2)!important;
+		}
+
+		#nav a {
+			padding: 8px 15px;
+    	margin-top: 16px;
+			font-size: 14px;
+			font-weight: 500;
+			color: #000;
+    	line-height: 20px;
+			display: inline-block;
+		}
+		#nav a:hover {
+			text-decoration: none;
+			outline: none;
+			outline-offset: 0;
+		}
+ */
+		#main {
+			position: fixed;
+			left: 0;
+			right: 0;
+			/* top: 68px; */
+			top: 0;
+			bottom: 0;
+			background-color: #edeff1;
+			display: flex;
+			align-items: center;
+		}
+/* 
+		#sidebar {
+			position: fixed;
+			right: 0;
+			width: 500px;
+			top: 0;
+			bottom: 0;
+			overflow-y: auto;
+			background-color: #1abc9c;
+		} */
+
+		.main-box {
+			width: 500px;
+			border: 1px solid #e8e8e8;
+			padding: 30px;
+    	border-radius: 2px;
+			margin-left: 100px;
+			background-color: #3498db;
+		}
+		.tip {
+			font-size: 18px;
+			text-align: center;
+			margin-bottom: 20px;
+		}
+		.form {
+			display: flex;
+		}
+		.form-control {
+			border: 2px solid #bdc3c7;
+			color: #34495e;
+			line-height: 1.467;
+			height: 42px;
+			border-radius: 6px;
+			box-shadow: none;
+			border-color: transparent;
+			font-size: 17px;
+			text-indent: 3px;
+			flex: 1;
+		}
+		.btn-primary {
+			margin-left: 10px;
+			padding: 10px 19px;
+			font-size: 17px;
+			line-height: 1.471;
+			border-radius: 6px;
+			color: white;
+    	background-color: #1abc9c;
+		}
 	</style>
 </head>
+
 <body>
-	<div id="menu">
-		<div id="a">Index</div>
-		<div id="b">Guide</div>
-	</div>
-	<div id="main">
-		<div class="left"></div>
-		<div class="right">
-			sdfsdf
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			sdfsdfs
-			fsdfdsf
-			sdfdsf
-			sdfsdf
-			sdf
-			sdf
-			sdf
-			sdf
-			sdf
-			s
-			dfsf
+	<!-- <nav id="nav">
+		<a href="#find">Find Link</a>
+		<a href="#copy">Copy Link</a>
+		<a href="#download">Download</a>
+	</nav> -->
+	<main id="main">
+		<div class="main-box">
+			<div class="tip">Instagram Photo, Video Downloader</div>
+			<form class="form" onSubmit="">
+				<input id="input" name="url" class="form-control" type="text" placeholder="https://www.instagram.com/p/B9xCfDjIIfX/">
+				<button class="btn-primary" type="submit" id="button">Download</button>
+			</form>
 		</div>
-	</div>	
+	</main>
+	<!-- <section id="sidebar">
+		<section id="find">
+			<br>
+			sdfsdf
+			<br>
+			sdfsdf
+			<br>
+			sdfsdf
+			<br>
+			sdfsdf
+			<br>
+			sdfsdf
+			<br>
+			sdfsdf
+			<br>
+			sdfsdf
+			<br>
+			sdfsdf
+			<br>
+			sdfsdf
+			<br>
+			sdfsdf
+			<br>
+			sdfsdf
+			<br>
+			sdfsdf
+			<br>
+			sdfsdf
+			<br>
+			sdfsdf
+			<br>
+			sdfsdf
+			<br>
+			sdfsdf
+			<br>
+			sdfsdf
+		</section>
+		<section id="copy">
+			
+			<br>
+			sdfsdf
+			<br>
+			sdfsdf
+			<br>
+			sdfsdf
+			<br>
+			sdfsdf
+			<br>
+			sdfsdf
+			<br>
+			sdfsdf
+			<br>
+			sdfsdf
+			<br>
+			sdfsdf
+			<br>
+			sdfsdf
+			<br>
+			sdfsdf
+			<br>
+			sdfsdf
+			<br>
+			sdfsdf
+			<br>
+			sdfsdf
+			<br>
+			sdfsdf
+			<br>
+			sdfsdf
+			<br>
+			sdfsdf
+			<br>
+			sdfsdf
+		</section>
+		<section id="download">
+			
+			<br>
+			sdfsdf
+			<br>
+			sdfsdf
+			<br>
+			sdfsdf
+			<br>
+			sdfsdf
+			<br>
+			sdfsdf
+			<br>
+			sdfsdf
+			<br>
+			sdfsdf
+			<br>
+			sdfsdf
+			<br>
+			sdfsdf
+			<br>
+			sdfsdf
+			<br>
+			sdfsdf
+			<br>
+			sdfsdf
+			<br>
+			sdfsdf
+			<br>
+			sdfsdf
+			<br>
+			sdfsdf
+			<br>
+			sdfsdf
+			<br>
+			sdfsdf
+		</section>
+	</section> -->
+	<script src="./js/ajax.js"></script>
+	<script>
+		var host = 'https://tools-cmd.herokuapp.com'
+
+		var eInput = document.querySelector('#input')
+		var eButton = document.querySelector('#button')
+
+		function onSubmit(e) {
+			var url = eInput.value;
+			if (url) {
+				ajax(host + '/instagram/get?url=' + url, function(res) {
+					if (res.code === 0) {
+						window.open(res.data.downloadUrl)
+					} else {
+						alert(res.message)
+					}
+				}, function(err) {
+					alert('Failed to request resource')
+				})
+			}
+			e.preventDefault()
+		}
+		eButton.addEventListener('click', onSubmit)
+	</script>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-161096065-1"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+
+		function gtag() {
+			dataLayer.push(arguments);
+		}
+		gtag('js', new Date());
+
+		gtag('config', 'UA-161096065-1');
+	</script>
 </body>
+
 </html>

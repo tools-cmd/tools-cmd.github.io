@@ -5,65 +5,63 @@
 	<title>Instagram Photo, Video Downloader</title>
 	<style>
 		* { margin: 0; padding: 0; }
-		a {
-			text-decoration: none;
-			transition: all .25s cubic-bezier(.2,1,.4,1);
-			/* outline: none;
-    	outline-offset: 0; */
-		}
-		body {
-			background: hsla(0,0%,100%,.92);
+
+		html, body, main {
+			width: 100%;
+			height: 100%;
 		}
 		button {
 			border: none;
 		}
-		/* #nav {
+		.loading {
 			position: fixed;
-			left: 0;
-			right: 0;
-			top: 0;
-			height: 68px;
-			padding-left: 100px;
-    	box-shadow: 0 0 14px -6px rgba(0,0,0,.2)!important;
-		}
-
-		#nav a {
-			padding: 8px 15px;
-    	margin-top: 16px;
-			font-size: 14px;
-			font-weight: 500;
-			color: #000;
-    	line-height: 20px;
-			display: inline-block;
-		}
-		#nav a:hover {
-			text-decoration: none;
-			outline: none;
-			outline-offset: 0;
-		}
- */
-		#main {
-			position: fixed;
-			left: 0;
-			right: 0;
-			/* top: 68px; */
-			top: 0;
-			bottom: 0;
-			background-color: #edeff1;
-			display: flex;
+			z-index: 5000;
+			width: 120px;
+			height: 120px;
+			top: 40%;
+			left: 50%;
+			display: none;
+			transform: translate(-50%,-50%);
+			text-align: center;
+			border-radius: 5px;
+			color: rgba(255,255,255,0.9);
+			flex-direction: column;
 			align-items: center;
+			justify-content: center;
+			background-color: #4c4c4c;
 		}
-/* 
-		#sidebar {
-			position: fixed;
-			right: 0;
-			width: 500px;
-			top: 0;
-			bottom: 0;
-			overflow-y: auto;
-			background-color: #1abc9c;
-		} */
-
+		.loading-icon {
+			width: 38px;
+    	height: 38px;
+			margin: 8px 0;
+    	vertical-align: baseline;
+    	display: inline-block;
+			animation: weuiLoading 1s steps(12,end) infinite;
+			background: transparent url("data:image/svg+xml;charset=utf8, %3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 100 100'%3E%3Cpath fill='none' d='M0 0h100v100H0z'/%3E%3Crect width='7' height='20' x='46.5' y='40' fill='%23E9E9E9' rx='5' ry='5' transform='translate(0 -30)'/%3E%3Crect width='7' height='20' x='46.5' y='40' fill='%23989697' rx='5' ry='5' transform='rotate(30 105.98 65)'/%3E%3Crect width='7' height='20' x='46.5' y='40' fill='%239B999A' rx='5' ry='5' transform='rotate(60 75.98 65)'/%3E%3Crect width='7' height='20' x='46.5' y='40' fill='%23A3A1A2' rx='5' ry='5' transform='rotate(90 65 65)'/%3E%3Crect width='7' height='20' x='46.5' y='40' fill='%23ABA9AA' rx='5' ry='5' transform='rotate(120 58.66 65)'/%3E%3Crect width='7' height='20' x='46.5' y='40' fill='%23B2B2B2' rx='5' ry='5' transform='rotate(150 54.02 65)'/%3E%3Crect width='7' height='20' x='46.5' y='40' fill='%23BAB8B9' rx='5' ry='5' transform='rotate(180 50 65)'/%3E%3Crect width='7' height='20' x='46.5' y='40' fill='%23C2C0C1' rx='5' ry='5' transform='rotate(-150 45.98 65)'/%3E%3Crect width='7' height='20' x='46.5' y='40' fill='%23CBCBCB' rx='5' ry='5' transform='rotate(-120 41.34 65)'/%3E%3Crect width='7' height='20' x='46.5' y='40' fill='%23D2D2D2' rx='5' ry='5' transform='rotate(-90 35 65)'/%3E%3Crect width='7' height='20' x='46.5' y='40' fill='%23DADADA' rx='5' ry='5' transform='rotate(-60 24.02 65)'/%3E%3Crect width='7' height='20' x='46.5' y='40' fill='%23E2E2E2' rx='5' ry='5' transform='rotate(-30 -5.98 65)'/%3E%3C/svg%3E") no-repeat;
+    	background-size: 100%;
+		}
+		.loading-text {
+			font-size: 14px;
+		}
+		@keyframes weuiLoading {
+			0% {
+				transform: rotate3d(0, 0, 1, 0deg);
+			}
+			100% {
+				transform: rotate3d(0, 0, 1, 360deg);
+			}
+		}
+		.container {
+			width: 80%;
+			height: 100%;
+			display: flex;
+			justify-content: center;
+			margin: 0 auto;
+		}
+		.download {
+			flex: 0 0 40%;
+			align-self: center;
+		}
 		.main-box {
 			width: 500px;
 			border: 1px solid #e8e8e8;
@@ -76,6 +74,7 @@
 			font-size: 18px;
 			text-align: center;
 			margin-bottom: 20px;
+			color: #fff;
 		}
 		.form {
 			display: flex;
@@ -101,136 +100,41 @@
 			color: white;
     	background-color: #1abc9c;
 		}
+		.guide {
+			flex: 0 0 60%;
+			align-self: center;
+		}
+		.guide img {
+			width: 100%;
+		}
+
 	</style>
 </head>
 
 <body>
-	<!-- <nav id="nav">
-		<a href="#find">Find Link</a>
-		<a href="#copy">Copy Link</a>
-		<a href="#download">Download</a>
-	</nav> -->
-	<main id="main">
-		<div class="main-box">
-			<div class="tip">Instagram Photo, Video Downloader</div>
-			<form class="form" onSubmit="">
-				<input id="input" name="url" class="form-control" type="text" placeholder="https://www.instagram.com/p/B9xCfDjIIfX/">
-				<button class="btn-primary" type="submit" id="button">Download</button>
-			</form>
+	<noscript id="gatsby-noscript">This app works best with JavaScript enabled.</noscript>
+	
+	<main>
+		<section class="container">
+			<div class="download">
+				<div class="main-box">
+					<div class="tip">Instagram Photo, Video Downloader</div>
+					<form class="form" onSubmit="">
+						<input id="input" name="url" class="form-control" type="text" placeholder="https://www.instagram.com/p/B9xCfDjIIfX/">
+						<button class="btn-primary" type="submit" id="button">Download</button>
+					</form>
+				</div>
+			</div>
+			<div class="guide">
+				<img src="./featured-image@2x-1.png" alt="">
+			</div>
+		</section>
+		<div class="loading" id="loading">
+			<div class="loading-icon"></div>
+			<div class="loading-text">Loading...</div>
 		</div>
 	</main>
-	<!-- <section id="sidebar">
-		<section id="find">
-			<br>
-			sdfsdf
-			<br>
-			sdfsdf
-			<br>
-			sdfsdf
-			<br>
-			sdfsdf
-			<br>
-			sdfsdf
-			<br>
-			sdfsdf
-			<br>
-			sdfsdf
-			<br>
-			sdfsdf
-			<br>
-			sdfsdf
-			<br>
-			sdfsdf
-			<br>
-			sdfsdf
-			<br>
-			sdfsdf
-			<br>
-			sdfsdf
-			<br>
-			sdfsdf
-			<br>
-			sdfsdf
-			<br>
-			sdfsdf
-			<br>
-			sdfsdf
-		</section>
-		<section id="copy">
-			
-			<br>
-			sdfsdf
-			<br>
-			sdfsdf
-			<br>
-			sdfsdf
-			<br>
-			sdfsdf
-			<br>
-			sdfsdf
-			<br>
-			sdfsdf
-			<br>
-			sdfsdf
-			<br>
-			sdfsdf
-			<br>
-			sdfsdf
-			<br>
-			sdfsdf
-			<br>
-			sdfsdf
-			<br>
-			sdfsdf
-			<br>
-			sdfsdf
-			<br>
-			sdfsdf
-			<br>
-			sdfsdf
-			<br>
-			sdfsdf
-			<br>
-			sdfsdf
-		</section>
-		<section id="download">
-			
-			<br>
-			sdfsdf
-			<br>
-			sdfsdf
-			<br>
-			sdfsdf
-			<br>
-			sdfsdf
-			<br>
-			sdfsdf
-			<br>
-			sdfsdf
-			<br>
-			sdfsdf
-			<br>
-			sdfsdf
-			<br>
-			sdfsdf
-			<br>
-			sdfsdf
-			<br>
-			sdfsdf
-			<br>
-			sdfsdf
-			<br>
-			sdfsdf
-			<br>
-			sdfsdf
-			<br>
-			sdfsdf
-			<br>
-			sdfsdf
-			<br>
-			sdfsdf
-		</section>
-	</section> -->
+
 	<script>
 	var xmlHttp = null;
 	try {
@@ -262,11 +166,14 @@
 		var host = 'https://tools-cmd.herokuapp.com'
 
 		var eInput = document.querySelector('#input')
+		var eLoading = document.querySelector('#loading')
 		var eButton = document.querySelector('#button')
 
 		function onSubmit(e) {
 			var url = eInput.value;
 			if (url) {
+				eLoading.style.display = 'flex';
+				eButton.setAttribute('disabled', true)
 				ajax(host + '/instagram/get?url=' + url, function(res) {
 					if (!res) res = {}
 					if (res.code === 0) {
@@ -274,8 +181,12 @@
 					} else {
 						alert(res.message)
 					}
+					eButton.setAttribute('disabled', false)
+					eLoading.style.display = 'none';
 				}, function(err) {
-					// alert('Failed to request resource')
+					eButton.setAttribute('disabled', false)
+					eLoading.style.display = 'none';
+					alert('Failed to request resource')
 				})
 			}
 			e.preventDefault()
